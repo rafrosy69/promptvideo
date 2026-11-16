@@ -17,6 +17,7 @@
   <div class="tabs">
     <button class="tab" data-tab="img">🖼 Da immagine</button>
     <button class="tab is-on" data-tab="txt">✏️ Da testo</button>
+    <button class="tab" data-tab="story">📖 Storia lunga</button>
   </div>
 
   <section class="panel" id="panel-img">
@@ -36,6 +37,23 @@
 
   <section class="panel is-on" id="panel-txt">
     <textarea id="idea" class="field area" rows="3" placeholder="Descrivi la tua idea in poche parole… es. una tazza di caffè che fuma su un tavolo di legno al tramonto"></textarea>
+  </section>
+
+  <section class="panel" id="panel-story">
+    <textarea id="story" class="field area" rows="5" placeholder="Incolla qui la tua storia completa… es. Un vecchio faro su una scogliera viene riacceso dopo anni. Un bambino curioso lo scopre, entra, e la luce illumina di nuovo il mare."></textarea>
+    <div class="story-opts">
+      <div class="opt-row"><span class="opt-label">Durata totale</span>
+        <div class="chips" data-group="storyDur">
+          <button class="chip" data-val="20">20s</button>
+          <button class="chip is-on" data-val="30">30s</button>
+          <button class="chip" data-val="60">60s</button>
+          <button class="chip" data-val="90">90s</button>
+          <button class="chip" data-val="120">120s</button>
+        </div>
+        <span class="custom-dur"><input type="number" id="customDur" class="field mini-num" min="10" max="300" step="10" placeholder="sec"> <span style="font-size:12px;color:var(--muted)">custom</span></span>
+      </div>
+      <p class="hint">Scegli quanto deve durare il video: ti creo <b id="sceneCount">3</b> prompt da 10s l'uno (uno per ogni scena).</p>
+    </div>
   </section>
 
   <div class="opts">
@@ -90,6 +108,12 @@
       </div>
     </div>
     <p class="note" id="imgNote" hidden>💡 In modalità immagine: allega l'immagine caricata insieme al prompt quando lo usi.</p>
+  </section>
+
+  <section class="out" id="outStory" hidden>
+    <div class="story-head"><b id="storyTitle">La tua storia — 3 scene</b> <button class="btn mini" id="copyAllStory">Copia tutti i prompt</button></div>
+    <div id="storyList" class="story-list"></div>
+    <p class="note">💡 Ogni card è un video da 10s. Generali uno dopo l'altro e uniscili per ottenere il video lungo.</p>
   </section>
 
   <footer class="foot">Copia il prompt e incollalo dove crei i tuoi video. Tutto resta nel tuo browser, niente viene inviato da nessuna parte.</footer>
