@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt per video — da immagine o da testo</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="wrap">
+
+  <header class="head">
+    <div class="logo"><span class="dot"></span>PromptVideo</div>
+    <p class="sub">Un'immagine o una frase: ottieni il prompt pronto, in italiano e in inglese.</p>
+  </header>
+
+  <div class="tabs">
+    <button class="tab" data-tab="img">🖼 Da immagine</button>
+    <button class="tab is-on" data-tab="txt">✏️ Da testo</button>
+  </div>
+
+  <section class="panel" id="panel-img">
+    <div class="drop" id="drop">
+      <input type="file" id="file" accept="image/*" hidden>
+      <div class="drop-inner" id="dropInner">
+        <div class="drop-ic">＋</div>
+        <p><b>Carica un'immagine</b><br>clicca, trascina qui o incolla con Ctrl+V</p>
+      </div>
+      <div class="preview" id="preview" hidden>
+        <img id="previewImg" alt="Anteprima immagine caricata">
+        <button class="x" id="removeImg" title="Rimuovi immagine">✕</button>
+      </div>
+    </div>
+    <input type="text" id="imgCaption" class="field" placeholder="Cosa mostra l'immagine? (facoltativo) — es. una sneaker bianca su fondo nero">
+  </section>
+
+  <section class="panel is-on" id="panel-txt">
+    <textarea id="idea" class="field area" rows="3" placeholder="Descrivi la tua idea in poche parole… es. una tazza di caffè che fuma su un tavolo di legno al tramonto"></textarea>
+  </section>
+
+  <div class="opts">
+    <div class="opt-row"><span class="opt-label">Stile</span>
+      <div class="chips" data-group="style">
+        <button class="chip is-on" data-val="cinematic">Cinematografico</button>
+        <button class="chip" data-val="dynamic">Dinamico</button>
+        <button class="chip" data-val="minimal">Minimal</button>
+        <button class="chip" data-val="vintage">Vintage</button>
+      </div>
+    </div>
+    <div class="opt-row"><span class="opt-label">Camera</span>
+      <div class="chips" data-group="cam">
+        <button class="chip is-on" data-val="dolly">Dolly-in</button>
+        <button class="chip" data-val="orbit">Orbita</button>
+        <button class="chip" data-val="pan">Pan</button>
+        <button class="chip" data-val="static">Fissa</button>
+      </div>
+    </div>
+    <div class="opt-row"><span class="opt-label">Durata</span>
+      <div class="chips" data-group="dur">
+        <button class="chip" data-val="5">5s</button>
+        <button class="chip is-on" data-val="10">10s</button>
+        <button class="chip" data-val="15">15s</button>
+        <button class="chip" data-val="30">30s</button>
+      </div>
+    </div>
+    <div class="opt-row"><span class="opt-label">Formato</span>
+      <div class="chips" data-group="ratio">
+        <button class="chip is-on" data-val="9:16">9:16</button>
+        <button class="chip" data-val="16:9">16:9</button>
+        <button class="chip" data-val="1:1">1:1</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="btn primary" id="btnIT">🇮🇹 Prepara in italiano</button>
+    <button class="btn primary" id="btnEN">🇬🇧 Prepare in English</button>
+    <button class="btn ghost" id="btnMore" disabled>＋ Arricchisci ulteriormente</button>
+  </div>
+
+  <section class="out" id="out" hidden>
+    <div class="out-grid">
+      <div class="card" id="cardIT">
+        <div class="card-head"><span class="flag">🇮🇹 Italiano</span><button class="btn mini" data-copy="it">Copia</button></div>
+        <pre class="prompt" id="promptIT"></pre>
+      </div>
+      <div class="card" id="cardEN">
+        <div class="card-head"><span class="flag">🇬🇧 English</span><button class="btn mini" data-copy="en">Copia</button></div>
+        <pre class="prompt" id="promptEN"></pre>
+      </div>
+    </div>
+    <p class="note" id="imgNote" hidden>💡 In modalità immagine: allega l'immagine caricata insieme al prompt quando lo usi.</p>
+  </section>
+
+  <footer class="foot">Copia il prompt e incollalo dove crei i tuoi video. Tutto resta nel tuo browser, niente viene inviato da nessuna parte.</footer>
+
+</main>
+<div class="toast" id="toast" hidden></div>
+<script src="app.js"></script>
+</body>
+</html>
